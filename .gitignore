@@ -1,0 +1,8 @@
+node_modules
+.DS_Store
+*.log
+
+/out
+/build
+/.next
+/.next-export
