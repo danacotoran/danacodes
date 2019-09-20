@@ -1,7 +1,7 @@
 {
   "name": "danacodes",
   "version": "1.0.0",
-  "description": "Dana codes",
+  "description": "Dana codes.",
   "main": "index.js",
   "scripts": {
     "dev": "next",
