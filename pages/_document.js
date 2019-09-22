@@ -1,28 +1,36 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-const MyHead = () => (
-  <Head>
-    <title>Dana Codes</title>
-    <meta name="viewport" content="width=device-width, minimum-scale=1" />
-    <meta name="description" content="Dana is a front end developer based in London, UK" />
-  </Head>
-);
+import Document, { Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+  static getInitialProps({ renderPage }) {
+    // Create an instance of ServerStyleSheet
+    const sheet = new ServerStyleSheet();
+
+    //  Retrieve styles from components in the page
+    const page = renderPage((App) => (props) =>
+      sheet.collectStyles(<App {...props} />),
+    );
+
+    // Extract the styles as <style> tags
+    const styleTags = sheet.getStyleElement();
+
+    // Pass styleTags as a prop
+    return { ...page, styleTags };
   }
 
   render() {
     return (
-      <Html>
-        <MyHead />
+      <html>
+        <Head>
+          {/*  Output the styles in the head  */}
+          {this.props.styleTags}
+        </Head>
         <body>
           <Main />
           <NextScript />
         </body>
-      </Html>
-    )
+      </html>
+    );
   }
 }
