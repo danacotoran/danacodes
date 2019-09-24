@@ -10,9 +10,9 @@ export default () => (
     <StyledHeader>Hello World</StyledHeader>
     <StyledMain>
       <StyledSection>
-        <p>I am Dana.</p>
-        <p>I am a front end developer.</p>
-        <p>I live in London.</p>
+        <p>I am Dana, a front end developer based in London, UK.</p>
+      </StyledSection>
+      <StyledSection>
         <StyledUL>
           <StyledLI>
             <Link href="/experience" passHref>

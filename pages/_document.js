@@ -51,24 +51,26 @@ const GlobalStyle = createGlobalStyle`
 
 const StyledBody = styled.body`
   margin: 0 !important;
-  padding: 0 !important;
+  padding-bottom: 3rem;
   color: rgb(23,24,26);
-  /* background-color: rgb(23,24,26); */
-  background-color: rgb(240,240,240);
-  /* color: rgb(213,213,213); */
+  background-color: rgb(245,245,245);
   font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
   font-size: 1.5rem;
-  @media(max-width: 375px) {
-    font-size: 1.3rem
-    p {
-      margin-top: .3rem;
-      margin-bottom: .3rem;
+  p {
+    margin-bottom: 1rem;
+    margin-top: 0;
+    &:last-child {
+      margin-bottom: 0
     }
   }
-  p {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  @media(max-width: 480px) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    p {
+      margin-bottom: .5rem;
+    }
   }
+
 `
 
 export default class MyDocument extends Document {

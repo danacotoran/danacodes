@@ -11,8 +11,14 @@ const Main = styled.main`
 `
 const Section = styled.section`
   margin-bottom: 2rem;
-  min-width: 30%
+  width: 30%;
+  @media(max-width: 1024px) {
+    width: 50%;
+  }
   @media(max-width: 480px) {
+    width: 70%;
+  }
+  @media(max-width: 375px) {
     width: 90%;
   }
 `
@@ -28,6 +34,11 @@ const Header = styled.header`
   }
   text-align: center;
   animation: fadeIn .3s .5s ease-in-out forwards;
+  margin-bottom: 2rem;
+
+  @media (min-width: 481px) {
+    margin-bottom: 3rem;
+  }
 `
 
 export const StyledSection = (props) => <Section>{props.children}</Section>
@@ -36,7 +47,7 @@ export const StyledMain = (props) => <Main>{props.children}</Main>
 
 export const StyledHeader = (props) => (
   <Header>
-    <HomeLink href="/"><span>Dana Codes</span></HomeLink>
+    <HomeLink href="/"><span>danacodes</span></HomeLink>
     <Title> {props.children} </Title>
   </Header>
 )

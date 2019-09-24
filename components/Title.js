@@ -16,23 +16,25 @@ const Heading = styled.h1`
   font-variation-settings: 'wght' 900;
   animation: stretchyHeading2 .3s ease-in-out forwards;
   transition: opacity .5s 1s;
-  text-shadow: 3px 3px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px rgba(0,0,0,0.2);
   &:after {
     content: '';
     display: block;
     width: 100%;
     height: 0rem;
-    background-color: pink;
+    background-color: darkcyan;
     position: absolute;
     z-index: -1;
     bottom: 0rem;
     transition: height .3s .3s ease-in-out;
   }
 
-  &:hover {
-    animation: stretchyHeading .3s ease-in-out forwards;
-    &:after {
-      height: 1rem
+  @media(min-width: 768px) {
+    &:hover {
+      animation: stretchyHeading .3s ease-in-out forwards;
+      &:after {
+        height: 1.3rem
+      }
     }
   }
 
