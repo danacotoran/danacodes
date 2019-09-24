@@ -1,53 +1,7 @@
 import App from 'next/app'
 import Head  from 'next/head'
 import React from 'react'
-import { ThemeProvider, createGlobalStyle } from 'styled-components'
-
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Bandeins Strange Variable';
-    src: url('/static/fonts/BandeinsStrangeVariableGX.ttf');
-  }
-  @keyframes stretchyHeading {
-    0% {
-      font-variation-settings: 'wdth' 150, 'wght' 900;
-      opacity: 1;
-    }
-    5% {
-      font-variation-settings: 'wdth' 130, 'wght' 900;
-      opacity: 1;
-    }
-
-    95% {
-      font-variation-settings: 'wdth' 400, 'wght' 900;
-      opacity: 1;
-    }
-    100% {
-      font-variation-settings: 'wdth' 380, 'wght' 900;
-      opacity: 1;
-    }
-  }
-
-  @keyframes stretchyHeading2 {
-    0% {
-      font-variation-settings: 'wdth' 380, 'wght' 900;
-      opacity: 1;
-    }
-
-    5% {
-      font-variation-settings: 'wdth' 400, 'wght' 900;
-      opacity: 1;
-    }
-    95% {
-      font-variation-settings: 'wdth' 130, 'wght' 900;
-      opacity: 1;
-    }
-    100% {
-      font-variation-settings: 'wdth' 150, 'wght' 900;
-      opacity: 1;
-    }
-  }
-`
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 
 
 const theme = {
@@ -56,7 +10,45 @@ const theme = {
   }
 }
 
+const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Bandeins Strange Variable';
+    src: url('/static/fonts/BandeinsStrangeVariableGX.ttf');
+  }
+  body {
+    margin: 0 !important;
+    padding-bottom: 3rem;
+    color: rgb(23,24,26);
+    background-color: rgb(245,245,245);
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+    font-size: 1.5rem;
+    p {
+      margin-bottom: 1rem;
+      margin-top: 0;
+      &:last-child {
+        margin-bottom: 0
+      }
+    }
+    @media(max-width: 480px) {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      p {
+        margin-bottom: .5rem;
+      }
+    }
+  }
+`
+
 export default class MyApp extends App {
+  static async getInitialProps({ Component, router, ctx }) {
+    let pageProps = {}
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
+
+    return { pageProps }
+  }
   render () {
     const { Component, pageProps } = this.props
     return (

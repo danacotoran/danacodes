@@ -5,6 +5,45 @@ const TitleContainer = styled.div`
   white-space: nowrap;
 `
 const Heading = styled.h1`
+    @keyframes stretchyHeading {
+      0% {
+        font-variation-settings: 'wdth' 150, 'wght' 900;
+        opacity: 1;
+      }
+      5% {
+        font-variation-settings: 'wdth' 130, 'wght' 900;
+        opacity: 1;
+      }
+
+      95% {
+        font-variation-settings: 'wdth' 400, 'wght' 900;
+        opacity: 1;
+      }
+      100% {
+        font-variation-settings: 'wdth' 380, 'wght' 900;
+        opacity: 1;
+      }
+    }
+
+    @keyframes stretchyHeading2 {
+      0% {
+        font-variation-settings: 'wdth' 380, 'wght' 900;
+        opacity: 1;
+      }
+
+      5% {
+        font-variation-settings: 'wdth' 400, 'wght' 900;
+        opacity: 1;
+      }
+      95% {
+        font-variation-settings: 'wdth' 130, 'wght' 900;
+        opacity: 1;
+      }
+      100% {
+        font-variation-settings: 'wdth' 150, 'wght' 900;
+        opacity: 1;
+      }
+    }
   display: inline-block;
   opacity: 0;
   font-size: 4rem;

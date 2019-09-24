@@ -1,30 +1,6 @@
 
 import Document, { Head, Main, NextScript } from 'next/document';
-import styled, { ServerStyleSheet, createGlobalStyle } from 'styled-components'
-
-const StyledBody = styled.body`
-  margin: 0 !important;
-  padding-bottom: 3rem;
-  color: rgb(23,24,26);
-  background-color: rgb(245,245,245);
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
-  font-size: 1.5rem;
-  p {
-    margin-bottom: 1rem;
-    margin-top: 0;
-    &:last-child {
-      margin-bottom: 0
-    }
-  }
-  @media(max-width: 480px) {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    p {
-      margin-bottom: .5rem;
-    }
-  }
-
-`
+import { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -50,10 +26,10 @@ export default class MyDocument extends Document {
           {/*  Output the styles in the head  */}
           {this.props.styleTags}
         </Head>
-        <StyledBody>
+        <body>
           <Main />
           <NextScript />
-        </StyledBody>
+        </body>
       </html>
     );
   }
