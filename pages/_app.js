@@ -1,7 +1,54 @@
 import App from 'next/app'
 import Head  from 'next/head'
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Bandeins Strange Variable';
+    src: url('/static/fonts/BandeinsStrangeVariableGX.ttf');
+  }
+  @keyframes stretchyHeading {
+    0% {
+      font-variation-settings: 'wdth' 150, 'wght' 900;
+      opacity: 1;
+    }
+    5% {
+      font-variation-settings: 'wdth' 130, 'wght' 900;
+      opacity: 1;
+    }
+
+    95% {
+      font-variation-settings: 'wdth' 400, 'wght' 900;
+      opacity: 1;
+    }
+    100% {
+      font-variation-settings: 'wdth' 380, 'wght' 900;
+      opacity: 1;
+    }
+  }
+
+  @keyframes stretchyHeading2 {
+    0% {
+      font-variation-settings: 'wdth' 380, 'wght' 900;
+      opacity: 1;
+    }
+
+    5% {
+      font-variation-settings: 'wdth' 400, 'wght' 900;
+      opacity: 1;
+    }
+    95% {
+      font-variation-settings: 'wdth' 130, 'wght' 900;
+      opacity: 1;
+    }
+    100% {
+      font-variation-settings: 'wdth' 150, 'wght' 900;
+      opacity: 1;
+    }
+  }
+`
+
 
 const theme = {
   colors: {
@@ -18,6 +65,7 @@ export default class MyApp extends App {
           <title>Dana Codes</title>
           <meta name="viewport" content="width=device-width, minimum-scale=1" />
           <meta name="description" content="Dana is a front end developer based in London, UK" />
+          <GlobalStyle />
         </Head>
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />

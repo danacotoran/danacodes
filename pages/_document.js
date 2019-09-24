@@ -2,53 +2,6 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import styled, { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Bandeins Strange Variable';
-    src: url('/static/fonts/BandeinsStrangeVariableGX.ttf');
-  }
-  @keyframes stretchyHeading {
-    0% {
-      font-variation-settings: 'wdth' 150, 'wght' 900;
-      opacity: 1;
-    }
-    5% {
-      font-variation-settings: 'wdth' 130, 'wght' 900;
-      opacity: 1;
-    }
-
-    95% {
-      font-variation-settings: 'wdth' 400, 'wght' 900;
-      opacity: 1;
-    }
-    100% {
-      font-variation-settings: 'wdth' 380, 'wght' 900;
-      opacity: 1;
-    }
-  }
-
-  @keyframes stretchyHeading2 {
-    0% {
-      font-variation-settings: 'wdth' 380, 'wght' 900;
-      opacity: 1;
-    }
-
-    5% {
-      font-variation-settings: 'wdth' 400, 'wght' 900;
-      opacity: 1;
-    }
-    95% {
-      font-variation-settings: 'wdth' 130, 'wght' 900;
-      opacity: 1;
-    }
-    100% {
-      font-variation-settings: 'wdth' 150, 'wght' 900;
-      opacity: 1;
-    }
-  }
-`;
-
-
 const StyledBody = styled.body`
   margin: 0 !important;
   padding-bottom: 3rem;
@@ -98,7 +51,6 @@ export default class MyDocument extends Document {
           {this.props.styleTags}
         </Head>
         <StyledBody>
-        <GlobalStyle />
           <Main />
           <NextScript />
         </StyledBody>
