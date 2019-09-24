@@ -1,1 +1,8 @@
-export default () => <h1> My experience </h1>
+import {StyledSection, StyledMain, StyledHeader} from '../components/LayoutElements'
+
+export default () => (
+  <React.Fragment>
+    <StyledHeader>My experience</StyledHeader>
+  </React.Fragment>
+
+)
