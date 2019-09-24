@@ -65,8 +65,8 @@ export default class MyApp extends App {
           <title>Dana Codes</title>
           <meta name="viewport" content="width=device-width, minimum-scale=1" />
           <meta name="description" content="Dana is a front end developer based in London, UK" />
-          <GlobalStyle />
         </Head>
+        <GlobalStyle />
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />
         </ThemeProvider>
