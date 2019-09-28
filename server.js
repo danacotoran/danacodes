@@ -6,31 +6,38 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-app.prepare()
-.then(() => {
+
+const mailer = require('./mailer')
+
+app.prepare().then(() => {
   const server = express()
 
   server.use(bodyParser.json())
 
-  server.get('*', (req, res) => {
-    return handle(req, res)
+  server.post('/api/contact', (req, res) => {
+    const { email = '', name = '', message = '' } = req.body
+    if (email.length && name.length && message.length) {
+
+      mailer({ email, name, text: message }).then(() => {
+        res.send('success')
+      }).catch((error) => {
+        res.status(400)
+        console.log('failed', error)
+        res.send('error')
+      })
+    }
+    else {
+      res.status(400)
+        .send('Please ensure all the fields are filled in')
+    }
   })
 
-  server.post('/api/contact', (req, res) => {
-    const { email, name, message } = req.body
-    console.log(req.body)
-    console.log(email)
-    console.log(name)
-    console.log(message)
-    res.send('success')
+  server.get('*', (req, res) => {
+    return handle(req, res)
   })
 
   server.listen(3000, (err) => {
     if (err) throw err
     console.log('> Ready on http://localhost:3000')
   })
-})
-.catch((ex) => {
-  console.error(ex.stack)
-  process.exit(1)
 })

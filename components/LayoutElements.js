@@ -47,7 +47,7 @@ export const StyledMain = (props) => <Main>{props.children}</Main>
 
 export const StyledHeader = (props) => (
   <Header>
-    <HomeLink href="/"><span>danacodes</span></HomeLink>
+    <HomeLink href="/"><span>home</span></HomeLink>
     <Title> {props.children} </Title>
   </Header>
 )

@@ -9,7 +9,8 @@ class Contact extends Component {
       submitted: false,
       name: '',
       message: '',
-      email: ''
+      email: '',
+      error:''
     }
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -29,12 +30,14 @@ class Contact extends Component {
     fetch('/api/contact', {
       method: 'post',
       headers: {
-        'Accept': 'application/json, text/plain, */*',
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(this.state)
     }).then((res) => {
-      res.status === 200 ? this.setState({ submitted: true }) : ''
+      res.text().then((responseText) => {
+        res.status === 200 ? this.setState({ submitted: true }) : (res.status === 400 ? this.setState({ submitted: true, error: responseText }) : '')
+      })
     })
   }
 
@@ -45,12 +48,10 @@ class Contact extends Component {
           <StyledMain>
               <form method="POST" action="/api/contact" onSubmit={e => {
                     e.preventDefault()
-                    // console.log(this)
-                    // console.log(e)
                     this.submitForm()
                   }}>
                 <label htmlFor="name">
-                  Your name
+                  Name
                 </label>
                 <input
                   type="text"
@@ -59,7 +60,7 @@ class Contact extends Component {
                   onChange={this.handleNameChange} />
 
                 <label htmlFor="email" >
-                  Your email
+                  Email
                 </label>
                 <input
                   type="email"
@@ -75,7 +76,7 @@ class Contact extends Component {
                   rows="3"
                   value={this.state.message}
                   onChange={this.handleMessageChange} />
-                <input type="submit" />
+                <input type="submit" value="Send!" />
               </form>
           </StyledMain>
         </React.Fragment>
