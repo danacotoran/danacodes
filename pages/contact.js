@@ -1,5 +1,6 @@
-import {Component} from 'react'
-import {StyledSection, StyledMain, StyledHeader} from '../components/LayoutElements'
+import { Component } from 'react'
+import { StyledSection, StyledMain, StyledHeader } from '../components/LayoutElements'
+import { StyledLabel, ErrorMessage, StyledInput, StyledTextarea, StyledBtn, SuccessMessage } from '../components/StyledForm'
 
 class Contact extends Component {
   constructor (props) {
@@ -36,51 +37,63 @@ class Contact extends Component {
       body: JSON.stringify(this.state)
     }).then((res) => {
       res.text().then((responseText) => {
-        res.status === 200 ? this.setState({ submitted: true }) : (res.status === 400 ? this.setState({ submitted: true, error: responseText }) : '')
+        res.status === 200
+          ? this.setState({ submitted: true, submitting: false, error: '' })
+          : (res.status === 400
+            ? this.setState({ submitted: false, error: responseText, submitting: false })
+            : this.setState({error: "Sorry, your message can not be sent at this time. Please return later!"}))
       })
     })
   }
 
   render() {
-      return(
-        <React.Fragment>
-          <StyledHeader>Get in touch</StyledHeader>
-          <StyledMain>
-              <form method="POST" action="/api/contact" onSubmit={e => {
-                    e.preventDefault()
-                    this.submitForm()
-                  }}>
-                <label htmlFor="name">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.handleNameChange} />
+    const {submitting, submitted, error} = this.state
+    return(
+      <React.Fragment>
+        <StyledHeader>Get in touch</StyledHeader>
+        <StyledMain>
+          <StyledSection>
+            <ErrorMessage error={error} />
+            <SuccessMessage success={submitted === true ? 'Thanks, your message has been sent' : ''}/>
+            <form method="POST" action="/api/contact" onSubmit={e => {
+                  e.preventDefault()
+                  this.submitForm()
+                }}>
+              <StyledLabel htmlFor="name">
+                Name
+              </StyledLabel>
+              <StyledInput
+                type="text"
+                name="name"
+                autoFocus={true}
+                value={this.state.name}
+                onChange={this.handleNameChange} />
 
-                <label htmlFor="email" >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange}/>
+              <StyledLabel htmlFor="email" >
+                Email
+              </StyledLabel>
+              <StyledInput
+                type="email"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleEmailChange}/>
 
-                <label htmlFor="message" >
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  rows="3"
-                  value={this.state.message}
-                  onChange={this.handleMessageChange} />
-                <input type="submit" value="Send!" />
-              </form>
-          </StyledMain>
-        </React.Fragment>
-      )
+              <StyledLabel htmlFor="message" >
+                Message
+              </StyledLabel>
+              <StyledTextarea
+                name="message"
+                rows="6"
+                maxLength="1000"
+                value={this.state.message}
+                onChange={this.handleMessageChange} />
+              <StyledBtn type="submit"
+                    value={(submitting === true) ? 'Sending' : ((submitted === true) ? 'Sent!' : 'Send!')} />
+            </form>
+          </StyledSection>
+        </StyledMain>
+      </React.Fragment>
+    )
   }
 }
 

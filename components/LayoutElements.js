@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {HomeLink} from '../components/StyledLink'
+import { HomeLink } from '../components/StyledLink'
 import Title from '../components/Title'
 
 
