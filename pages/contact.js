@@ -43,7 +43,15 @@ class Contact extends Component {
     }).then((res) => {
       res.text().then((responseText) => {
         res.status === 200
-          ? this.setState({ submitted: true, submitting: false, error: '' })
+          ? this.setState({
+              submitted: true,
+              submitting: false,
+              error: '',
+              email: '',
+              name: '',
+              message: '',
+              checkbox: ''
+            })
           : (res.status === 400
             ? this.setState({ submitted: false, error: responseText, submitting: false })
             : this.setState({error: "Sorry, your message can not be sent at this time. Please return later!"}))
