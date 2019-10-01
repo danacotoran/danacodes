@@ -9,7 +9,6 @@ const StyledLink = styled.a`
 
 
 export const HomeLink = styled.a`
-
   color: rgb(23,24,26);
   font-weight: bold;
   display: flex;
