@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     color: rgb(23,24,26);
     background-color: rgb(245,245,245);
     font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     p {
       margin-bottom: 1rem;
       margin-top: 0;

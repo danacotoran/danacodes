@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { StyledSection, StyledMain, StyledHeader } from '../components/LayoutElements'
-import { StyledLabel, ErrorMessage, StyledInput, StyledTextarea, StyledBtn, SuccessMessage } from '../components/StyledForm'
+import { StyledLabel, ErrorMessage, StyledInput, StyledTextarea, StyledBtn, SuccessMessage, StyledCheckbox } from '../components/StyledForm'
 
 class Contact extends Component {
   constructor (props) {
@@ -8,6 +8,7 @@ class Contact extends Component {
     this.state = {
       submitting: false,
       submitted: false,
+      consented: '',
       name: '',
       message: '',
       email: '',
@@ -17,6 +18,7 @@ class Contact extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleMessageChange = this.handleMessageChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleConsentChange = this.handleConsentChange.bind(this);
   }
   handleEmailChange(e) {
      this.setState({email: e.target.value});
@@ -26,6 +28,9 @@ class Contact extends Component {
   }
   handleNameChange(e) {
      this.setState({name: e.target.value});
+  }
+  handleConsentChange(e) {
+    this.setState({consented: e.target.checked})
   }
   submitForm () {
     fetch('/api/contact', {
@@ -64,6 +69,7 @@ class Contact extends Component {
               </StyledLabel>
               <StyledInput
                 type="text"
+                id="name"
                 name="name"
                 autoFocus={true}
                 value={this.state.name}
@@ -74,6 +80,7 @@ class Contact extends Component {
               </StyledLabel>
               <StyledInput
                 type="email"
+                id="email"
                 name="email"
                 value={this.state.email}
                 onChange={this.handleEmailChange}/>
@@ -83,12 +90,24 @@ class Contact extends Component {
               </StyledLabel>
               <StyledTextarea
                 name="message"
+                id="message"
                 rows="6"
                 maxLength="1000"
                 value={this.state.message}
                 onChange={this.handleMessageChange} />
-              <StyledBtn type="submit"
-                    value={(submitting === true) ? 'Sending' : ((submitted === true) ? 'Sent!' : 'Send!')} />
+              <StyledLabel htmlFor="consent" >
+                <StyledCheckbox
+                  onChange={this.handleConsentChange}
+                  type="checkbox"
+                  name="consent"
+                  value={this.state.consented}
+                  id="consent"/>
+                I agree to be contacted in response to my message
+              </StyledLabel>
+              <StyledBtn
+                disabled={this.state.email && this.state.message && this.state.name && this.state.consented ? false : true}
+                type="submit"
+                value={(submitting === true) ? 'Sending' : ((submitted === true) ? 'Sent!' : 'Send!')} />
             </form>
           </StyledSection>
         </StyledMain>
