@@ -12,7 +12,7 @@ const send = ({ email, name, text }) => {
   const message = {
     from,
     to: 'dana.cotoran@gmail.com',
-    subject: `New message from ${from}`,
+    subject: `New contact form message from ${from}`,
     text,
     replyTo: from
   }

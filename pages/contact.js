@@ -21,16 +21,20 @@ class Contact extends Component {
     this.handleConsentChange = this.handleConsentChange.bind(this);
   }
   handleEmailChange(e) {
-     this.setState({email: e.target.value});
+    this.setState({email: e.target.value});
+    this.state.submitted && this.setState({submitted: false})
   }
   handleMessageChange(e) {
-     this.setState({message: e.target.value});
+    this.setState({message: e.target.value});
+    this.state.submitted && this.setState({submitted: false})
   }
   handleNameChange(e) {
-     this.setState({name: e.target.value});
+    this.setState({name: e.target.value});
+    this.state.submitted && this.setState({submitted: false})
   }
   handleConsentChange(e) {
     this.setState({consented: e.target.checked})
+    this.state.submitted && this.setState({submitted: false})
   }
   submitForm () {
     this.setState({ submitting: true })
@@ -51,7 +55,7 @@ class Contact extends Component {
               email: '',
               name: '',
               message: '',
-              checkbox: ''
+              consented: false
             })
           : (res.status === 400
             ? this.setState({
@@ -60,7 +64,7 @@ class Contact extends Component {
                 submitting: false
               })
             : this.setState({
-                error: "Sorry, your message can not be sent at this time. Please return later!",
+                error: "Sorry, your message can not be sent at this time. Please try again later!",
                 submitted: false,
                 submitting: false
               }))
@@ -69,7 +73,7 @@ class Contact extends Component {
   }
 
   render() {
-    const {submitting, submitted, error} = this.state
+    const {submitting, submitted, error, email, message, name, consented} = this.state
     return(
       <React.Fragment>
         <StyledHeader>Get in touch</StyledHeader>
@@ -87,7 +91,7 @@ class Contact extends Component {
                 id="name"
                 name="name"
                 autoFocus={true}
-                value={this.state.name}
+                value={name}
                 onChange={this.handleNameChange} />
 
               <StyledFormElements.StyledLabel htmlFor="email" >
@@ -97,7 +101,7 @@ class Contact extends Component {
                 type="email"
                 id="email"
                 name="email"
-                value={this.state.email}
+                value={email}
                 onChange={this.handleEmailChange}/>
 
               <StyledFormElements.StyledLabel htmlFor="message" >
@@ -108,23 +112,23 @@ class Contact extends Component {
                 id="message"
                 rows="6"
                 maxLength="1000"
-                value={this.state.message}
+                value={message}
                 onChange={this.handleMessageChange} />
               <StyledFormElements.StyledLabel htmlFor="consent" >
                 <StyledFormElements.StyledCheckbox
                   onChange={this.handleConsentChange}
                   type="checkbox"
                   name="consent"
-                  value={this.state.consented}
+                  checked={consented}
                   id="consent"/>
                 I agree to be contacted in response to my message
               </StyledFormElements.StyledLabel>
               <StyledFormElements.ErrorMessage error={error} />
               <StyledFormElements.SuccessMessage success={submitted === true ? 'Thanks, your message has been sent' : ''}/>
               <StyledFormElements.StyledBtn
-                disabled={this.state.email && this.state.message && this.state.name && this.state.consented ? false : true}
+                disabled={email && message && name && consented && !submitting ? false : true}
                 type="submit"
-                value={(submitting === true) ? 'Sending...' : ((submitted === true) ? 'Sent!' : 'Send!')} />
+                value={(submitting === true) ? 'Sending...' : 'Send!'} />
             </form>
           </StyledSection>
         </StyledMain>
