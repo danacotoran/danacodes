@@ -61,7 +61,7 @@ const Heading = styled.h1`
     display: block;
     width: 100%;
     height: 0rem;
-    background-color: darkcyan;
+    background-color: ${({ theme }) => theme.colours.accent};
     position: absolute;
     z-index: -1;
     bottom: 0rem;

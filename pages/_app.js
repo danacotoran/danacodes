@@ -5,8 +5,13 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 
 
 const theme = {
-  colors: {
-    primary: 'fuchsia'
+  colours: {
+    background: '#fefefe',
+    text: '#17181A',
+    accent: '#006161',
+    success: '#006161',
+    error: '#AD0000',
+    grey: '#666'
   }
 }
 
@@ -18,8 +23,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0 !important;
     padding-bottom: 3rem;
-    color: rgb(23,24,26);
-    background-color: rgb(245,245,245);
+    color: ${theme.colours.text};
+    background-color: ${theme.colours.background};
     font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
     font-size: 1.3rem;
     p {

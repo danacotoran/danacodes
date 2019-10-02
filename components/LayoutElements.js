@@ -12,6 +12,9 @@ const Main = styled.main`
 const Section = styled.section`
   margin-bottom: 2rem;
   width: 30%;
+  @media(min-width: 1920px) {
+    width: 20%;
+  }
   @media(max-width: 1024px) {
     width: 50%;
   }

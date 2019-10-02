@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { StyledSection, StyledMain, StyledHeader } from '../components/LayoutElements'
-import { StyledLabel, ErrorMessage, StyledInput, StyledTextarea, StyledBtn, SuccessMessage, StyledCheckbox } from '../components/StyledForm'
+import { StyledFormElements } from '../components/StyledForm'
 
 class Contact extends Component {
   constructor (props) {
@@ -33,6 +33,7 @@ class Contact extends Component {
     this.setState({consented: e.target.checked})
   }
   submitForm () {
+    this.setState({ submitting: true })
     fetch('/api/contact', {
       method: 'post',
       headers: {
@@ -53,8 +54,16 @@ class Contact extends Component {
               checkbox: ''
             })
           : (res.status === 400
-            ? this.setState({ submitted: false, error: responseText, submitting: false })
-            : this.setState({error: "Sorry, your message can not be sent at this time. Please return later!"}))
+            ? this.setState({
+                submitted: false,
+                error: responseText,
+                submitting: false
+              })
+            : this.setState({
+                error: "Sorry, your message can not be sent at this time. Please return later!",
+                submitted: false,
+                submitting: false
+              }))
       })
     })
   }
@@ -66,16 +75,14 @@ class Contact extends Component {
         <StyledHeader>Get in touch</StyledHeader>
         <StyledMain>
           <StyledSection>
-            <ErrorMessage error={error} />
-            <SuccessMessage success={submitted === true ? 'Thanks, your message has been sent' : ''}/>
             <form method="POST" action="/api/contact" onSubmit={e => {
                   e.preventDefault()
                   this.submitForm()
                 }}>
-              <StyledLabel htmlFor="name">
+              <StyledFormElements.StyledLabel htmlFor="name">
                 Name
-              </StyledLabel>
-              <StyledInput
+              </StyledFormElements.StyledLabel>
+              <StyledFormElements.StyledInput
                 type="text"
                 id="name"
                 name="name"
@@ -83,39 +90,41 @@ class Contact extends Component {
                 value={this.state.name}
                 onChange={this.handleNameChange} />
 
-              <StyledLabel htmlFor="email" >
+              <StyledFormElements.StyledLabel htmlFor="email" >
                 Email
-              </StyledLabel>
-              <StyledInput
+              </StyledFormElements.StyledLabel>
+              <StyledFormElements.StyledInput
                 type="email"
                 id="email"
                 name="email"
                 value={this.state.email}
                 onChange={this.handleEmailChange}/>
 
-              <StyledLabel htmlFor="message" >
+              <StyledFormElements.StyledLabel htmlFor="message" >
                 Message
-              </StyledLabel>
-              <StyledTextarea
+              </StyledFormElements.StyledLabel>
+              <StyledFormElements.StyledTextarea
                 name="message"
                 id="message"
                 rows="6"
                 maxLength="1000"
                 value={this.state.message}
                 onChange={this.handleMessageChange} />
-              <StyledLabel htmlFor="consent" >
-                <StyledCheckbox
+              <StyledFormElements.StyledLabel htmlFor="consent" >
+                <StyledFormElements.StyledCheckbox
                   onChange={this.handleConsentChange}
                   type="checkbox"
                   name="consent"
                   value={this.state.consented}
                   id="consent"/>
                 I agree to be contacted in response to my message
-              </StyledLabel>
-              <StyledBtn
+              </StyledFormElements.StyledLabel>
+              <StyledFormElements.ErrorMessage error={error} />
+              <StyledFormElements.SuccessMessage success={submitted === true ? 'Thanks, your message has been sent' : ''}/>
+              <StyledFormElements.StyledBtn
                 disabled={this.state.email && this.state.message && this.state.name && this.state.consented ? false : true}
                 type="submit"
-                value={(submitting === true) ? 'Sending' : ((submitted === true) ? 'Sent!' : 'Send!')} />
+                value={(submitting === true) ? 'Sending...' : ((submitted === true) ? 'Sent!' : 'Send!')} />
             </form>
           </StyledSection>
         </StyledMain>
