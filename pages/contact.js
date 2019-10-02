@@ -21,16 +21,20 @@ class Contact extends Component {
     this.handleConsentChange = this.handleConsentChange.bind(this);
   }
   handleEmailChange(e) {
-     this.setState({email: e.target.value});
+    this.setState({email: e.target.value});
+    this.state.submitted && this.setState({submitted: false})
   }
   handleMessageChange(e) {
-     this.setState({message: e.target.value});
+    this.setState({message: e.target.value});
+    this.state.submitted && this.setState({submitted: false})
   }
   handleNameChange(e) {
-     this.setState({name: e.target.value});
+    this.setState({name: e.target.value});
+    this.state.submitted && this.setState({submitted: false})
   }
   handleConsentChange(e) {
     this.setState({consented: e.target.checked})
+    this.state.submitted && this.setState({submitted: false})
   }
   submitForm () {
     this.setState({ submitting: true })
