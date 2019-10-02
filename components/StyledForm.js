@@ -17,8 +17,15 @@ const StyledMessage = styled.p`
   bottom: -5rem;
   margin: 0;
   padding: 2rem;
+  svg.feather {
+    margin-right: .5rem;
+  }
   @media (max-width: 767px) {
     padding: 1rem;
+    svg.feather {
+      height: ${({ theme }) => theme.typography.baseFontSize};
+      width: ${({ theme }) => theme.typography.baseFontSize};
+    }
   }
   width: 100%;
   text-align: center;
