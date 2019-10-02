@@ -1,5 +1,5 @@
 
-const mailer = require('../mailer')
+const mailer = require('../../mailer')
 
 module.exports = (req, res) => {
   if (req.method === 'POST') {
