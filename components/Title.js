@@ -46,7 +46,7 @@ const Heading = styled.h1`
     }
   display: inline-block;
   opacity: 0;
-  font-size: 4rem;
+  font-size: ${({ theme }) => theme.typography.baseTitleFontSize};
   position: relative;
   margin-top: 0;
   margin-bottom: 2rem;
@@ -54,14 +54,13 @@ const Heading = styled.h1`
   font-family: 'Bandeins Strange Variable', -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
   font-variation-settings: 'wght' 900;
   animation: stretchyHeading2 .3s ease-in-out forwards;
-  transition: opacity .5s 1s;
-  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px ${({ theme }) => theme.colours.shadow};
   &:after {
     content: '';
     display: block;
     width: 100%;
     height: 0rem;
-    background-color: darkcyan;
+    background-color: ${({ theme }) => theme.colours.accent};
     position: absolute;
     z-index: -1;
     bottom: 0rem;
@@ -78,7 +77,7 @@ const Heading = styled.h1`
   }
 
   @media(max-width: 767px) {
-    font-size: 2rem;
+    font-size: ${({ theme }) => theme.typography.baseTitleFontSizeMobile};
   }
 `
 export default (props) =>

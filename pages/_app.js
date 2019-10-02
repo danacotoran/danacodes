@@ -5,8 +5,21 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 
 
 const theme = {
-  colors: {
-    primary: 'fuchsia'
+  colours: {
+    background: '#fefefe',
+    text: '#17181A',
+    accent: '#006161',
+    success: '#006161',
+    error: '#AD0000',
+    grey: '#666',
+    shadow: 'rgba(0,0,0,0.2)'
+  },
+  typography: {
+    baseFontSize: '1.3rem',
+    baseSubtitleFontSize: '1.3rem',
+    baseFontSizeMobile: '1rem',
+    baseTitleFontSize: '4rem',
+    baseTitleFontSizeMobile: '2rem'
   }
 }
 
@@ -18,10 +31,16 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0 !important;
     padding-bottom: 3rem;
-    color: rgb(23,24,26);
-    background-color: rgb(245,245,245);
+    color: ${theme.colours.text};
+    background-color: ${theme.colours.background};
     font-family: -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
-    font-size: 1.3rem;
+    font-size: ${theme.typography.baseFontSize};
+    svg.feather {
+      height: ${theme.typography.baseFontSize};
+      width: ${theme.typography.baseFontSize};
+      vertical-align: text-bottom;
+      margin: 0 .1rem;
+    }
     p {
       margin-bottom: 1rem;
       margin-top: 0;
@@ -29,11 +48,16 @@ const GlobalStyle = createGlobalStyle`
         margin-bottom: 0
       }
     }
-    @media(max-width: 480px) {
-      font-size: 1rem;
+    @media(max-width: 767px) {
+      font-size: ${theme.typography.baseFontSizeMobile};
       line-height: 1.5rem;
       p {
         margin-bottom: .5rem;
+      }
+
+      svg.feather {
+        height: ${theme.typography.baseFontSizeMobile};
+        width: ${theme.typography.baseFontSizeMobile};
       }
     }
   }

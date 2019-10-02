@@ -1,5 +1,6 @@
 import React from 'react'
 import Title from '../components/Title'
+import { ExternalLinkIcon } from '../components/svg'
 import Link from 'next/link'
 import StyledLink, {HomeLink} from '../components/StyledLink'
 import {StyledLI, StyledUL} from '../components/StyledLists'
@@ -20,7 +21,7 @@ export default () => (
             </Link>
           </StyledLI>
           <StyledLI>
-            The <StyledLink href="https://github.com/danacotoran/danacodes" target="_blank">source code</StyledLink> for this website
+            The <StyledLink href="https://github.com/danacotoran/danacodes" target="_blank">source code <ExternalLinkIcon /></StyledLink> for this website
           </StyledLI>
           <StyledLI>
             <Link href="/contact" passHref>

@@ -1,18 +1,19 @@
 import styled from 'styled-components'
 
 const StyledLink = styled.a`
-  color: darkcyan;
+  color: ${({ theme }) => theme.colours.accent};
   &:visited {
-    color: #666;
+    color: ${({ theme }) => theme.colours.grey};
   }
 `
 
 
 export const HomeLink = styled.a`
-  color: rgb(23,24,26);
+  color: ${({ theme }) => theme.colours.text};
   font-weight: bold;
   display: flex;
   justify-content: center;
+  letter-spacing: .1rem;
   margin: 1rem auto;
 
 `
