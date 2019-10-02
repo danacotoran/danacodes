@@ -9,7 +9,7 @@ const StyledLink = styled.a`
 
 
 export const HomeLink = styled.a`
-  color: rgb(23,24,26);
+  color: ${({ theme }) => theme.colours.text};
   font-weight: bold;
   display: flex;
   justify-content: center;

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { SadIcon, SmileIcon } from '../components/svg'
 
 const StyledMessage = styled.p`
   @keyframes StyledMessageSlideIn {
@@ -25,8 +26,8 @@ const StyledMessage = styled.p`
   animation: StyledMessageSlideIn .3s ease-in-out forwards;
 `
 
-const ErrorMessage = (props) => props.error.length ?  <StyledMessage background={({ theme }) => theme.colours.error}> {props.error} </StyledMessage> : ''
-const SuccessMessage = (props) => props.success.length ?  <StyledMessage background={({ theme }) => theme.colours.success}> {props.success} </StyledMessage> : ''
+const ErrorMessage = (props) => props.error.length ?  <StyledMessage background={({ theme }) => theme.colours.error}> <SadIcon />{props.error} </StyledMessage> : ''
+const SuccessMessage = (props) => props.success.length ?  <StyledMessage background={({ theme }) => theme.colours.success}> <SmileIcon />{props.success} </StyledMessage> : ''
 
 const StyledLabel = styled.label`
   margin-bottom: .25rem;
@@ -67,8 +68,8 @@ const StyledBtn = styled.input`
   padding: 1rem 2rem;
   border-radius: 0;
   border: none;
-  box-shadow: 3px 3px rgba(0,0,0,0.2);
-  text-shadow: 2px 2px rgba(0,0,0,0.2);
+  box-shadow: 3px 3px ${({ theme }) => theme.colours.shadow};
+  text-shadow: 2px 2px ${({ theme }) => theme.colours.shadow};
   &:disabled {
     background-color: ${({ theme }) => theme.colours.grey};
     cursor: not-allowed;
