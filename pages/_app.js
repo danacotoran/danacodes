@@ -68,11 +68,6 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <React.Fragment>
-        <Head>
-          <title>Dana Codes</title>
-          <meta name="viewport" content="width=device-width, minimum-scale=1" />
-          <meta name="description" content="Dana is a front end developer based in London, UK" />
-        </Head>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <Component {...pageProps} />

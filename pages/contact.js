@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import Head from 'next/head'
 import { StyledSection, StyledMain, StyledHeader } from '../components/LayoutElements'
 import { StyledFormElements } from '../components/StyledForm'
 
@@ -76,6 +77,10 @@ class Contact extends Component {
     const {submitting, submitted, error, email, message, name, consented} = this.state
     return(
       <React.Fragment>
+
+        <Head>
+          <title>Contact me</title>
+        </Head>
         <StyledHeader>Get in touch</StyledHeader>
         <StyledMain>
           <StyledSection>

@@ -25,6 +25,8 @@ export default class MyDocument extends Document {
         <Head>
           {/*  Output the styles in the head  */}
           {this.props.styleTags}
+
+          <meta name="description" content="Dana is a front end developer based in London, UK" />
         </Head>
         <body>
           <Main />
