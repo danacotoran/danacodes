@@ -23,10 +23,19 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <meta property="og:title" content="Dana Codes" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://dana.codes" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
+          <link rel="manifest" href="/static/favicon/site.webmanifest" />
+          <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#006161" />
+          <meta name="msapplication-TileColor" content="#00aba9" />
+          <meta name="theme-color" content="#fefefe" />
+          <meta name="description" content="Dana is a front end developer based in London, UK" />
           {/*  Output the styles in the head  */}
           {this.props.styleTags}
-
-          <meta name="description" content="Dana is a front end developer based in London, UK" />
         </Head>
         <body>
           <Main />
