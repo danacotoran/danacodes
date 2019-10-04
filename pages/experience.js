@@ -1,11 +1,15 @@
-import {StyledSection, StyledMain, StyledHeader} from '../components/LayoutElements'
 import Link from 'next/link'
+import Head from 'next/head'
+import {StyledSection, StyledMain, StyledHeader} from '../components/LayoutElements'
 import { StyledUL, StyledLI} from '../components/StyledLists'
 import StyledLink from '../components/StyledLink'
 import Workplace from '../components/Workplace'
 
 export default () => (
   <React.Fragment>
+    <Head>
+      <title>Work experience</title>
+    </Head>
     <StyledHeader>My experience</StyledHeader>
     <StyledMain>
       <StyledUL>
@@ -39,5 +43,4 @@ export default () => (
       </Link>
     </StyledMain>
   </React.Fragment>
-
 )

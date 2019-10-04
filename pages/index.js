@@ -1,13 +1,17 @@
 import React from 'react'
+import Head  from 'next/head'
+import Link from 'next/link'
 import Title from '../components/Title'
 import { ExternalLinkIcon } from '../components/svg'
-import Link from 'next/link'
 import StyledLink, {HomeLink} from '../components/StyledLink'
 import {StyledLI, StyledUL} from '../components/StyledLists'
 import {StyledSection, StyledMain, StyledHeader} from '../components/LayoutElements'
 
 export default () => (
   <React.Fragment>
+    <Head>
+      <title>Dana Codes</title>
+    </Head>
     <StyledHeader>Hello World</StyledHeader>
     <StyledMain>
       <StyledSection>
