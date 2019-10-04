@@ -1,5 +1,5 @@
 {
   "env": {
-    "SENDGRID_KEY": "@sengrid-key"
+    "SENDGRID_KEY": "@sendgrid-key"
   }
 }
