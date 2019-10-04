@@ -21,6 +21,9 @@ export default () => (
             </Link>
           </StyledLI>
           <StyledLI>
+            The <StyledLink href="https://github.com/danacotoran/danacodes" target="_blank">source code <ExternalLinkIcon /></StyledLink> for this website
+          </StyledLI>
+          <StyledLI>
             <Link href="/contact" passHref>
               <StyledLink>Contact me</StyledLink>
             </Link>

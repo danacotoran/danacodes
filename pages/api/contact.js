@@ -1,5 +1,6 @@
 
 const mailer = require('../../mailer')
+require('dotenv').config()
 
 module.exports = (req, res) => {
   if (req.method === 'POST') {
