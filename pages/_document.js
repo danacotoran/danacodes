@@ -23,25 +23,19 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <meta property="og:title" content="Dana Codes" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://dana.codes" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
+          <link rel="manifest" href="/static/favicon/site.webmanifest" />
+          <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#006161" />
+          <meta name="msapplication-TileColor" content="#00aba9" />
+          <meta name="theme-color" content="#fefefe" />
+          <meta name="description" content="Dana is a front end developer based in London, UK" />
           {/*  Output the styles in the head  */}
           {this.props.styleTags}
-          <link rel="shortcut icon" href="/favicon.ico">
-
-          <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
-          <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
-          <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
-          <link rel="icon" type="image/png" href="/favicon-64x64.png" sizes="64x64" />
-          <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-          <link rel="icon" type="image/png" href="/favicon-128x128.png" sizes="128x128" />
-          <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
-
-          <link rel="apple-touch-icon" href="touch-icon-iphone.png" />
-          <link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png" />
-          <link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png" />
-          <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png" />
-          <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-pro.png" />
-          <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-6plus.png" />
-          <meta name="description" content="Dana is a front end developer based in London, UK" />
         </Head>
         <body>
           <Main />
