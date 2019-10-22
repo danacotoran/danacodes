@@ -1,5 +1,6 @@
 
 import styled from 'styled-components'
+import { Component } from 'react'
 
 const TitleContainer = styled.div`
   white-space: nowrap;
@@ -68,7 +69,7 @@ const Heading = styled.h1`
   }
 
   @media(min-width: 768px) {
-    &:hover {
+    &.active {
       animation: stretchyHeading .3s ease-in-out forwards;
       &:after {
         height: 1.3rem
@@ -80,7 +81,32 @@ const Heading = styled.h1`
     font-size: ${({ theme }) => theme.typography.baseTitleFontSizeMobile};
   }
 `
-export default (props) =>
-  <TitleContainer>
-    <Heading>{props.children}</Heading>
-  </TitleContainer>
+export default class ReactTitle extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { active: false }
+    this.toggleActive = this.toggleActive.bind(this)
+    this.toggleInactive = this.toggleInactive.bind(this)
+    let hoverTimer
+  }
+  toggleActive = () => {
+    clearTimeout(this.hoverTimer)
+    this.hoverTimer = setTimeout(() => { this.setState({ active: !this.state.active }) }, 300)
+  }
+  toggleInactive = () => {
+    clearTimeout(this.hoverTimer)
+    this.setState({ active: false })
+  }
+  render () {
+    return(
+      <TitleContainer>
+        <Heading
+          className={this.state.active ? "active" : ""}
+          onMouseEnter={this.toggleActive}
+          onMouseLeave={this.toggleInactive}>
+          {this.props.children}
+        </Heading>
+      </TitleContainer>
+    )
+  }
+}
