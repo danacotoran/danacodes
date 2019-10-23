@@ -4,40 +4,32 @@ import { StyledSection, StyledMain, StyledHeader } from '../components/LayoutEle
 import { StyledFormElements } from '../components/StyledForm'
 
 class Contact extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      submitting: false,
-      submitted: false,
-      consented: '',
-      name: '',
-      message: '',
-      email: '',
-      error:''
-    }
-
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleMessageChange = this.handleMessageChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleConsentChange = this.handleConsentChange.bind(this);
+  state = {
+    submitting: false,
+    submitted: false,
+    consented: '',
+    name: '',
+    message: '',
+    email: '',
+    error:''
   }
-  handleEmailChange(e) {
+  handleEmailChange = (e) => {
     this.setState({email: e.target.value});
     this.state.submitted && this.setState({submitted: false})
   }
-  handleMessageChange(e) {
+  handleMessageChange = (e) => {
     this.setState({message: e.target.value});
     this.state.submitted && this.setState({submitted: false})
   }
-  handleNameChange(e) {
+  handleNameChange = (e) => {
     this.setState({name: e.target.value});
     this.state.submitted && this.setState({submitted: false})
   }
-  handleConsentChange(e) {
+  handleConsentChange = (e) => {
     this.setState({consented: e.target.checked})
     this.state.submitted && this.setState({submitted: false})
   }
-  submitForm () {
+  submitForm = () => {
     this.setState({ submitting: true })
     fetch('/api/contact', {
       method: 'post',
