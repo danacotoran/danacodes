@@ -82,16 +82,11 @@ const Heading = styled.h1`
   }
 `
 export default class ReactTitle extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { active: false }
-    this.toggleActive = this.toggleActive.bind(this)
-    this.toggleInactive = this.toggleInactive.bind(this)
-    let hoverTimer
-  }
+  state = { active: false }
+  hoverTimer
   toggleActive = () => {
     clearTimeout(this.hoverTimer)
-    this.hoverTimer = setTimeout(() => { this.setState({ active: !this.state.active }) }, 300)
+    this.hoverTimer = setTimeout(() => { this.setState({ active: true }) }, 300)
   }
   toggleInactive = () => {
     clearTimeout(this.hoverTimer)
