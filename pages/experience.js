@@ -27,7 +27,7 @@ export default () => (
             location="London"
             timeframe="November 2015 - June 2017"
             companyDesc="the UK’s leading flat sharing website"
-            role="Junior Front End Developer"/>
+            role="Front End Developer"/>
         </StyledLI>
         <StyledLI>
           <Workplace
@@ -35,7 +35,7 @@ export default () => (
             location="Bucharest"
             timeframe="April 2014 - July 2015"
             companyDesc="a digital agency with a focus on education technology"
-            role="Junior Developer"/>
+            role="Developer"/>
         </StyledLI>
       </StyledUL>
       <Link href="/contact" passHref>
