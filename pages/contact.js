@@ -77,7 +77,10 @@ class Contact extends Component {
 
   render() {
     const {submitting, submitted, error, email, message, name, consented, jsOn} = this.state,
-          queryOutcome = this.props.query && this.props.query.outcome
+          queryOutcome = this.props.query && this.props.query.outcome,
+          enableSubmit = !jsOn || (email && message && name && consented && !submitting),
+          hasError = error || queryOutcome == "error" || queryOutcome == "incomplete",
+          errorMessage = error || (queryOutcome == "error" ? "Sorry, your message can not be sent at this time. Please try again later!" : "Please ensure all the fields are filled in")
     return(
       <React.Fragment>
 
@@ -131,17 +134,12 @@ class Contact extends Component {
                   id="consented"/>
                 I agree to be contacted in response to my message
               </StyledFormElements.StyledLabel>
-              <StyledFormElements.ErrorMessage error={
-                error ? error
-                  : (queryOutcome == "error" ? "Sorry, your message can not be sent at this time. Please try again later!"
-                    : (queryOutcome == "incomplete" ? "Please ensure all the fields are filled in"
-                      : ''))
-              } />
-              <StyledFormElements.SuccessMessage success={submitted === true || queryOutcome == "success" ? 'Thanks, your message has been sent' : ''}/>
+              <StyledFormElements.ErrorMessage error={ hasError && errorMessage } />
+              <StyledFormElements.SuccessMessage success={submitted || queryOutcome == "success" ? 'Thanks, your message has been sent' : ''}/>
               <StyledFormElements.StyledBtn
-                disabled={!jsOn || (email && message && name && consented && !submitting) ? false : true}
+                disabled={!enableSubmit}
                 type="submit"
-                value={(submitting === true) ? 'Sending...' : 'Send!'} />
+                value={ submitting ? 'Sending...' : 'Send!'} />
             </form>
           </StyledSection>
         </StyledMain>
