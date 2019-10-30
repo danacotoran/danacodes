@@ -3,7 +3,11 @@ import Head from 'next/head'
 import { StyledSection, StyledMain, StyledHeader } from '../components/LayoutElements'
 import { StyledFormElements } from '../components/StyledForm'
 
+
 class Contact extends Component {
+  static async getInitialProps({ query }) {
+    return ({ query })
+  }
   state = {
     submitting: false,
     submitted: false,
@@ -11,7 +15,13 @@ class Contact extends Component {
     name: '',
     message: '',
     email: '',
-    error:''
+    error:'',
+    jsOn: false
+  }
+  componentDidMount() {
+    if(!this.state.jsOn) {
+      this.setState({jsOn: true})
+    }
   }
   handleEmailChange = (e) => {
     this.setState({email: e.target.value});
@@ -48,25 +58,29 @@ class Contact extends Component {
               email: '',
               name: '',
               message: '',
-              consented: false
+              consented: false,
             })
           : (res.status === 400
             ? this.setState({
                 submitted: false,
                 error: responseText,
-                submitting: false
+                submitting: false,
               })
             : this.setState({
                 error: "Sorry, your message can not be sent at this time. Please try again later!",
                 submitted: false,
-                submitting: false
+                submitting: false,
               }))
       })
     })
   }
 
   render() {
-    const {submitting, submitted, error, email, message, name, consented} = this.state
+    const {submitting, submitted, error, email, message, name, consented, jsOn} = this.state,
+          queryOutcome = this.props.query && this.props.query.outcome,
+          enableSubmit = !jsOn || (email && message && name && consented && !submitting),
+          hasError = error || queryOutcome == "error" || queryOutcome == "incomplete",
+          errorMessage = error || (queryOutcome == "error" ? "Sorry, your message can not be sent at this time. Please try again later!" : "Please ensure all the fields are filled in")
     return(
       <React.Fragment>
 
@@ -111,21 +125,21 @@ class Contact extends Component {
                 maxLength="1000"
                 value={message}
                 onChange={this.handleMessageChange} />
-              <StyledFormElements.StyledLabel htmlFor="consent" >
+              <StyledFormElements.StyledLabel htmlFor="consented" >
                 <StyledFormElements.StyledCheckbox
                   onChange={this.handleConsentChange}
                   type="checkbox"
-                  name="consent"
+                  name="consented"
                   checked={consented}
-                  id="consent"/>
+                  id="consented"/>
                 I agree to be contacted in response to my message
               </StyledFormElements.StyledLabel>
-              <StyledFormElements.ErrorMessage error={error} />
-              <StyledFormElements.SuccessMessage success={submitted === true ? 'Thanks, your message has been sent' : ''}/>
+              <StyledFormElements.ErrorMessage error={ hasError && errorMessage } />
+              <StyledFormElements.SuccessMessage success={submitted || queryOutcome == "success" ? 'Thanks, your message has been sent' : ''}/>
               <StyledFormElements.StyledBtn
-                disabled={email && message && name && consented && !submitting ? false : true}
+                disabled={!enableSubmit}
                 type="submit"
-                value={(submitting === true) ? 'Sending...' : 'Send!'} />
+                value={ submitting ? 'Sending...' : 'Send!'} />
             </form>
           </StyledSection>
         </StyledMain>
