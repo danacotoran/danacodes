@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Link from 'next/link'
 import { HomeLink } from '../components/StyledLink'
 import Title from '../components/Title'
 
@@ -50,7 +51,9 @@ export const StyledMain = (props) => <Main>{props.children}</Main>
 
 export const StyledHeader = (props) => (
   <Header>
-    <HomeLink href="/"><span>danacodes.com</span></HomeLink>
+    <Link href="/" passHref>
+      <HomeLink><span>danacodes.com</span></HomeLink>
+    </Link>
     <Title> {props.children} </Title>
   </Header>
 )
