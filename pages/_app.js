@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
     svg.feather {
       height: ${theme.typography.baseFontSize};
       width: ${theme.typography.baseFontSize};
-      vertical-align: text-bottom;
+      vertical-align: text-top;
       margin: 0 .1rem;
     }
     p {
@@ -62,6 +62,16 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
+
+::-moz-selection {
+  background-color: ${theme.colours.accent2};
+  color: #ffffff;
+}
+
+::selection {
+  background-color: ${theme.colours.accent2};
+  color: #ffffff;
+}
 `
 
 export default class MyApp extends App {

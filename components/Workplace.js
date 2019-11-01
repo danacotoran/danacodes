@@ -17,7 +17,23 @@ const WorkplaceHeading = styled.h2`
     &:first-child {
       text-transform: uppercase;
       font-weight: bold;
-      text-shadow: 2px 2px ${({ theme }) => theme.colours.shadow};
+      position: relative;
+      @media(min-width: 768px) {
+        &:hover:after {
+          height: 1.3rem;
+        }
+        &:after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: .4rem;
+          background-color: ${({ theme }) => theme.colours.accent2};
+          position: absolute;
+          z-index: -1;
+          bottom: 0rem;
+          transition: height .3s ease-in-out;
+        }
+      }
     }
     &:nth-child(2), &:nth-child(3)  {
       &:before {
