@@ -9,6 +9,7 @@ const theme = {
     background: '#fefefe',
     text: '#17181A',
     accent: '#006161',
+    accent2: '#ec9b3b',
     success: '#006161',
     error: '#AD0000',
     grey: '#666',
@@ -38,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
     svg.feather {
       height: ${theme.typography.baseFontSize};
       width: ${theme.typography.baseFontSize};
-      vertical-align: text-bottom;
+      vertical-align: text-top;
       margin: 0 .1rem;
     }
     p {
@@ -61,6 +62,16 @@ const GlobalStyle = createGlobalStyle`
       }
     }
   }
+
+::-moz-selection {
+  background-color: ${theme.colours.accent2};
+  color: #ffffff;
+}
+
+::selection {
+  background-color: ${theme.colours.accent2};
+  color: #ffffff;
+}
 `
 
 export default class MyApp extends App {
