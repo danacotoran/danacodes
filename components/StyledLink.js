@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 const StyledLink = styled.a`
   color: ${({ theme }) => theme.colours.accent};
-  &:visited {
+  /* &:visited {
     color: ${({ theme }) => theme.colours.grey};
-  }
+  } */
 `
 
 
