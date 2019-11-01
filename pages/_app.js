@@ -9,6 +9,7 @@ const theme = {
     background: '#fefefe',
     text: '#17181A',
     accent: '#006161',
+    accent2: '#ec9b3b',
     success: '#006161',
     error: '#AD0000',
     grey: '#666',
