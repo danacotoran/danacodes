@@ -6,7 +6,7 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 
 const theme = {
   colours: {
-    background: '#fbfaf5',
+    background: '#fefefe',
     text: '#17181A',
     accent: '#006161',
     accent2: '#ec9b3b',
