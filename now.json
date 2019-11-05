@@ -1,5 +1,8 @@
 {
   "env": {
     "SENDGRID_KEY": "@sendgrid-key"
-  }
+  },
+  "routes": [
+    { "src": "/d3", "dest": "https://d3.danacodes.com" }
+  ]
 }
