@@ -3,6 +3,6 @@
     "SENDGRID_KEY": "@sendgrid-key"
   },
   "routes": [
-    { "src": "/d3", "dest": "https://d3.danacodes.com" }
+    { "src": "/d3/(?<path>[^/]*)", "dest": "https://d3.danacodes.com/$path" }
   ]
 }
